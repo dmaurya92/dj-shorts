@@ -18,16 +18,28 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  transition: transform .4s cubic-bezier(.05,.74,.2,.99);
+  transition: transform .2s,left .2s;
   display: flex;
   flex-direction: column;
   padding: 1rem 0;
   background-color: var(--surface-ground);
 }
+.layout-static-inactive .layoutSidebar {
+  transform: translateX(-100%);
+  left: 0;
+}
+
 .layoutContent {
+  display: flex;
+  flex-direction: column;
   margin-left: 250px;
   padding: 1rem;
   background-color: var(--surface-50);
+  transition: margin-left .2s;
+}
+.layout-static-inactive .layoutContent {
+  margin-left: 0;
+  padding-left: 2rem;
 }
 .menuItems {
   display: flex;

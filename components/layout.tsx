@@ -1,16 +1,23 @@
 import Head from 'next/head'
+import React, { useState } from 'react';
 import styles from '../styles/Home.module.css'
 import "primereact/resources/themes/lara-light-indigo/theme.css";  //theme
 import "primereact/resources/primereact.min.css";              //core css
 import "primeicons/primeicons.css";                                //icons
 import "primeflex/primeflex.css";
 import Link from 'next/link';
+import { Button } from 'primereact/button';
 import { ReactNode } from 'react';
 import { useRouter } from 'next/router';
 
 
 export default function Layout({children}:{children:ReactNode}) {
-    const router = useRouter()
+    const router = useRouter();
+    const [isActive, setActive] = useState(false);
+
+    const onMenuToggle = () => {
+        setActive(!isActive);
+    }
   return (
     <div>
       <Head>
@@ -19,8 +26,8 @@ export default function Layout({children}:{children:ReactNode}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="">
-        <div className={styles.layoutSidebar}>
+     <div className={isActive ? 'layout-static-active': ''} >
+        <div className="layoutSidebar">
           <a className="logo pb-3 text-center" aria-label="PrimeReact logo" href="/">
             <img alt="logo" src="https://www.primefaces.org/primereact/images/primereact-logo-dark.svg" />
           </a>
@@ -34,10 +41,15 @@ export default function Layout({children}:{children:ReactNode}) {
             <Link href="/">Locale</Link>
           </div>
         </div>
-      </div>
 
-      <div className={styles.layoutContent}>
-        {children}
+        <div className="layoutContent">
+            <div className="top-header">
+                <Button icon="pi pi-chevron-left" className="p-button-rounded p-button-info toggle-icon" onClick={onMenuToggle} aria-label="User" />
+            </div>
+            <div className='p-3 content-wrap'>
+                {children}
+            </div>
+        </div>
       </div>
     </div>
   )

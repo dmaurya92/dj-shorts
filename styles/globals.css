@@ -30,3 +30,63 @@ a {
 .p-password input {
   width: 100%;
 }
+.layoutSidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background-color: var(--surface-a);
+  width: 250px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  transition: transform .2s,left .2s;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+  background-color: var(--surface-ground);
+}
+.layout-static-active .layoutSidebar {
+  transform: translateX(-100%);
+  left: 0;
+}
+
+.layoutContent {
+  display: flex;
+  flex-direction: column;
+  margin-left: 250px;
+  background-color: var(--surface-50);
+  transition: margin-left .2s;
+  position: relative;
+}
+.layout-static-active .layoutContent {
+  margin-left: 0;
+}
+.toggle-icon {
+  position: absolute !important;
+  left: -23px;
+  top: 13px;
+}
+.layout-static-active .toggle-icon {
+  left: 1rem;
+  transition: left .2s;
+}
+.toggle-icon .p-button-icon {
+  transform: rotate(0deg);
+  transition: transform .5s;
+}
+.layout-static-active .toggle-icon .p-button-icon {
+  transform: rotate(180deg);
+  transition: transform .5s;
+}
+.top-header {
+  height: 4.8rem;
+  background-color: var(--surface-card);
+  box-shadow: 0 3px 5px rgb(0 0 0 / 2%), 0 0 2px rgb(0 0 0 / 5%), 0 1px 4px rgb(0 0 0 / 8%);
+  z-index: 1;
+}
+.content-wrap {
+  max-height: calc(100vh - 4.8rem);
+  overflow: auto;
+}
